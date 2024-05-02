@@ -5,7 +5,7 @@
 
 
 
-[<img align="center" alt="JohannesMilke | YouTube" width="28px" src="https://github.com/ARYPROGRAMMER/devotionalapp/blob/master/ScreenShots/ic_launcher.png" />]
 
-
-
+![check](ScreenShots/intro.jpg)
+![check](ScreenShots/init5.jpg)
+![check](ScreenShots/init1.jpg)
