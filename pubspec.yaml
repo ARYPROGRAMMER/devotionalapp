@@ -102,5 +102,9 @@ flutter:
     - family: fontmain3
       fonts:
         - asset: assets/fonts/f3fam.ttf
+
+    - family: fontmain4
+      fonts:
+        - asset: assets/fonts/f4fam.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

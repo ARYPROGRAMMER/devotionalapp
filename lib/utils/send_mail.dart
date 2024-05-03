@@ -81,7 +81,7 @@ class _SendingMail extends State<SendingMail> {
               left: 70,
               top: 200,
               child:
-              Text("Verification Code",style: Theme.of(context).textTheme.displayLarge!.copyWith(fontStyle:FontStyle.normal,fontSize: 35,color: Colors.white))
+              Text("Verification Code",style: Theme.of(context).textTheme.titleMedium!.copyWith(fontStyle:FontStyle.normal,fontSize: 50,color: Colors.white))
 
           ),
 
@@ -100,7 +100,7 @@ class _SendingMail extends State<SendingMail> {
                             keyboardType: TextInputType.number,
                             controller: otp,
                             decoration:
-                            const InputDecoration(hintText: "                                Enter OTP")),
+                            InputDecoration(hintText: "                                        Enter OTP",suffix:Text("hello",style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize:30,fontStyle:FontStyle.normal)))),
                       ),
                       ElevatedButton(
                           onPressed: () async {
@@ -117,7 +117,7 @@ class _SendingMail extends State<SendingMail> {
                               ));
                             }
                           },
-                          child: const Text("Verify",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)),
+                          child:  Text("V e r i f y", style:Theme.of(context).textTheme.titleMedium!.copyWith(fontStyle:FontStyle.normal,fontSize: 20,fontWeight: FontWeight.bold))),
                     ],
                   ),
                 ),

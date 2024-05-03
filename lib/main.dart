@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
             displayLarge: const TextStyle(color: Colors.green ,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,fontFamily: "fontmain1"),
             displayMedium: const TextStyle(color: Colors.greenAccent ,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,fontFamily: "fontmain1"),
             displaySmall: const TextStyle(color: Colors.lightGreen ,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,fontFamily: "fontmain3"),
+            titleMedium:const TextStyle(color: Colors.greenAccent ,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,fontFamily: "fontmain4"),
           ),
           primarySwatch: Colors.lightBlue,
         ),
