@@ -30,7 +30,7 @@ InputDecoration textFieldDecoration(String labelText) {
 
 textFieldTextStyle() {
   return TextStyle(
-    color: AppColors.darkGrey,
+    color: Colors.white,
     fontSize: 13,
     fontWeight: FontWeight.w400,
   );
