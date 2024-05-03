@@ -151,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                           controller: emailController,
                           style: textFieldTextStyle(),
-                          decoration: InputDecoration(hintText: 'Email',prefixIcon: Icon(Icons.email_outlined)),
+                          decoration: InputDecoration(hintText: 'Email',hintStyle:Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: 16,color: Colors.grey),prefixIcon: Icon(Icons.email_outlined)),
                         ),
                         const SizedBox(
                           height: 10,
@@ -172,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           controller: _passController,
                           style: textFieldTextStyle(),
-                          decoration: InputDecoration(hintText: 'Password',prefixIcon: Icon(Icons.password_outlined)),
+                          decoration: InputDecoration(hintText: 'Password',hintStyle:Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: 16,color: Colors.grey),prefixIcon: Icon(Icons.password_outlined)),
 
                         ),
                         const SizedBox(
