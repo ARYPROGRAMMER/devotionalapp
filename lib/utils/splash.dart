@@ -1,8 +1,5 @@
 import 'dart:async';
-import 'dart:ffi';
-
 import 'package:dream/auth/login_idea/login_screen.dart';
-import 'package:dream/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

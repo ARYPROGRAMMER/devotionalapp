@@ -1,10 +1,9 @@
 import 'dart:math';
 
 import 'package:dream/main.dart';
-import 'package:dream/utils/splash.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/styles/text_field_style.dart';
 import '../../utils/utils.dart';
@@ -13,6 +12,7 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   // final PageController controller;
+
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -81,7 +81,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           if (value == null || value.isEmpty) {
                             return "Enter your e-mail.";
                           }
-
                           return null;
                         },
                         controller: _emailController,

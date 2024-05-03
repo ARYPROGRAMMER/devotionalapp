@@ -48,7 +48,6 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
   flutter_spinkit:
-  flutter_svg:
   email_otp:
   video_player:
   page_transition:
