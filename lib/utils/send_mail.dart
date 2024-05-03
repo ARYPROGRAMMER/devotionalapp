@@ -9,7 +9,7 @@ class SendingMail extends StatefulWidget {
 }
 
 class _SendingMail extends State<SendingMail> {
-
+  TextEditingController email = new TextEditingController();
   TextEditingController otp = new TextEditingController();
   EmailOTP myauth = EmailOTP();
 
