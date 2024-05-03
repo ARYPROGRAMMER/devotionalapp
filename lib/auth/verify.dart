@@ -24,7 +24,6 @@ class Verification extends StatelessWidget {
           child: Container(
               child: VerificationCodeInput(
                 keyboardType: TextInputType.number,
-
                 length: 4,
                 itemDecoration: BoxDecoration(
                   border: Border.all(width: 2,color: Colors.green),
@@ -43,5 +42,10 @@ class Verification extends StatelessWidget {
         ]
       ),
     );
+
+
   }
+
 }
+
+
