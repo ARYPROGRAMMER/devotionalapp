@@ -10,3 +10,6 @@
 ![check](ScreenShots/intro.jpg)
 ![check](ScreenShots/init5.jpg)
 ![check](ScreenShots/init1.jpg)
+![check](ScreenShots/otp1.jpg)
+![check](ScreenShots/otp2.jpg)
+![check](ScreenShots/otp3.jpg)
