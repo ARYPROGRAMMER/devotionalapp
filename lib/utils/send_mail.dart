@@ -1,13 +1,6 @@
 import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: SendingMail(),
-  ));
-}
-
 class SendingMail extends StatefulWidget {
   const SendingMail({Key? key}) : super(key: key);
 
