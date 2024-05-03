@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:dream/main.dart';
 import 'package:dream/utils/splash.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../utils/app_colors.dart';
@@ -10,6 +11,7 @@ import '../../utils/utils.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
   // final PageController controller;
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -28,57 +30,35 @@ class _LoginScreenState extends State<LoginScreen> {
         size: MediaQuery.sizeOf(context),
         child: Stack(
           children: [
-            // Positioned(
-            //   right: 40,
-            //   top: 140,
-            //   child: Transform.rotate(
-            //     angle: pi * .1,
-            //     child: Image.asset(
-            //       'assets/pngs/medical.png',
-            //       width: 60,
-            //     ),
-            //   ),
-            // ),
+
             Positioned(
-              left: 80,
-              top: 300,
-              child: Transform.rotate(
-                angle: -pi * 0.05,
-                child: Image.asset(
-                  'assets/pngs/health-care.png',
-                  width: 50,
+
+              bottom: 40,
+              child: new Container(
+                height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                decoration: new BoxDecoration(
+
+                  image: DecorationImage(
+                      image: AssetImage('assets/login.jpg'),
+                      // fit: BoxFit.fill
+                  ),
                 ),
               ),
             ),
-            // Positioned(
-            //   right: 10,
-            //   bottom: 20,
-            //   child: Transform.rotate(
-            //     angle: -pi * 0.14,
-            //     child: Image.asset(
-            //       'assets/pngs/antibiotic.png',
-            //       width: 120,
-            //     ),
-            //   ),
-            // ),
-            Positioned(
-              left: -50,
-              top: 10,
-              child: SvgPicture.asset(
-                'assets/svgs/pills.svg',
-                width: 300,
-              ),
-            ),
+
+
             Positioned(
               // padding: const EdgeInsets.all(30),
               bottom: 30,
               left: 30,
               right: 30,
+
               child: Container(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(9),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: AppColors.whiteColor.withOpacity(.8),
+                  borderRadius: BorderRadius.circular(30),
+                  color: Color(0xff8C0944).withOpacity(.6),
                 ),
                 child: Form(
                   key: formKey,
@@ -88,8 +68,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       Text(
                         'Log In',
                         style: TextStyle(
-                          color: AppColors.primaryHighContrast,
-                          fontSize: 27,
+                          color: Colors.white,
+                          fontSize: 25,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -99,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "Enter you e-mail.";
+                            return "Enter your e-mail.";
                           }
 
                           return null;
@@ -135,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         widthFactor: 1,
                         child: TextButton(
                             style: TextButton.styleFrom(
-                              backgroundColor: AppColors.primaryColor,
+                              backgroundColor: Color(0xff098c51),
                               foregroundColor: AppColors.whiteColor,
                             ),
                             onPressed: () async {
@@ -152,6 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 15,
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             'Don’t have an account?',
@@ -176,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Text(
                               'Sign Up',
                               style: TextStyle(
-                                color: AppColors.primaryHighContrast,
+                                color: Color(0xff098c51),
                                 fontSize: 13,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -190,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Text(
                         'Forget Password?',
                         style: TextStyle(
-                          color: AppColors.primaryHighContrast,
+                          color: Color(0xff098c51),
                           fontSize: 13,
                           fontWeight: FontWeight.w500,
                         ),

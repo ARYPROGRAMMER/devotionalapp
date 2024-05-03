@@ -7,7 +7,7 @@ InputDecoration textFieldDecoration(String labelText) {
   return InputDecoration(
     labelText: labelText,
     labelStyle: TextStyle(
-      color: AppColors.primaryHighContrast,
+      color: Color(0xff098c51),
       fontSize: 15,
       fontWeight: FontWeight.w600,
     ),
