@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: MyApp(),
+    home: SendingMail(),
   ));
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class SendingMail extends StatefulWidget {
+  const SendingMail({Key? key}) : super(key: key);
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<SendingMail> createState() => _SendingMail();
 }
 
-class _MyAppState extends State<MyApp> {
+class _SendingMail extends State<SendingMail> {
 
   TextEditingController otp = new TextEditingController();
   EmailOTP myauth = EmailOTP();
