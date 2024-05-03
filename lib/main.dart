@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.lightBlue,
         ),
 
-      home:  const SendingMail(),
+      home:  const SplashScreen(),
     );
   }
 }
