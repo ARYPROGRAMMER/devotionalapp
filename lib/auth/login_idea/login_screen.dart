@@ -1,16 +1,16 @@
 import 'dart:math';
 
+import 'package:dream/main.dart';
+import 'package:dream/utils/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:string_validator/string_validator.dart';
-
 import '../../utils/app_colors.dart';
 import '../../utils/styles/text_field_style.dart';
 import '../../utils/utils.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key, required this.controller});
-  final PageController controller;
+  const LoginScreen({super.key});
+  // final PageController controller;
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -100,9 +100,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Enter you e-mail.";
-                          } else if (!isEmail(value)) {
-                            return "Invalid mail";
                           }
+
                           return null;
                         },
                         controller: _emailController,
@@ -142,9 +141,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             onPressed: () async {
                               loadingDialog(context);
                               FocusManager.instance.primaryFocus?.unfocus();
-                              Future.delayed(const Duration(seconds: 2)).then(
-                                (value) => Navigator.pop(context),
-                              );
+                              // Future.delayed(const Duration(seconds: 2)).then(
+                              //   (value) => Navigator.pop(context),
+                              // );
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const MyHomePage()));
                             },
                             child: const Text("Sign In")),
                       ),
@@ -167,10 +167,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           InkWell(
                             onTap: () {
                               FocusManager.instance.primaryFocus?.unfocus();
-                              widget.controller.animateToPage(1,
-                                  duration: const Duration(milliseconds: 500),
-                                  curve: Curves.ease);
-                            },
+                            //   widget.controller.animateToPage(1,
+                            //       duration: const Duration(milliseconds: 500),
+                            //       curve: Curves.ease);
+                            // },
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const MyHomePage()));
+                          },
                             child: Text(
                               'Sign Up',
                               style: TextStyle(

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ffi';
 
+import 'package:dream/auth/login_idea/login_screen.dart';
 import 'package:dream/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -82,13 +83,13 @@ class _SplashScreenState extends State<SplashScreen>
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                  builder: (context) => const MyHomePage()),
+                  builder: (context) => const LoginScreen()),
                   (e) => false);
 
           Navigator.pushReplacement(
               context,
               PageTransition(
-                  child: const MyHomePage(),
+                  child: const LoginScreen(),
                   type: PageTransitionType.fade));
 
         }
