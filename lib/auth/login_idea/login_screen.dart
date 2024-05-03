@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:dream/main.dart';
+import 'package:dream/utils/send_mail.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,10 +19,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-
+  String ?emailval="";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,12 +79,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextFormField(
                         validator: (value) {
+
                           if (value == null || value.isEmpty) {
                             return "Enter your e-mail.";
                           }
                           return null;
                         },
-                        controller: _emailController,
+
+                        controller: emailController,
                         style: textFieldTextStyle(),
                         decoration: textFieldDecoration('Email'),
                       ),
@@ -118,12 +121,14 @@ class _LoginScreenState extends State<LoginScreen> {
                               foregroundColor: AppColors.whiteColor,
                             ),
                             onPressed: () async {
+                              emailval=emailController.text.toString();
+
                               loadingDialog(context);
                               FocusManager.instance.primaryFocus?.unfocus();
                               // Future.delayed(const Duration(seconds: 2)).then(
                               //   (value) => Navigator.pop(context),
                               // );
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const MyHomePage()));
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SendingMail(email: emailval)));
                             },
                             child: const Text("Sign In")),
                       ),
@@ -151,7 +156,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             //       duration: const Duration(milliseconds: 500),
                             //       curve: Curves.ease);
                             // },
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const MyHomePage()));
+                              emailval=emailController.text.toString();
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>SendingMail(email:emailval)));
                           },
                             child: Text(
                               'Sign Up',

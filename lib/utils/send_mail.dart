@@ -1,15 +1,17 @@
+import 'package:dream/main.dart';
 import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 
 class SendingMail extends StatefulWidget {
-  const SendingMail({Key? key}) : super(key: key);
+  SendingMail({Key? key,required this.email} ) : super(key: key);
+  String ?email;
 
   @override
   State<SendingMail> createState() => _SendingMail();
 }
 
 class _SendingMail extends State<SendingMail> {
-  TextEditingController email = new TextEditingController();
+  // TextEditingController email = new TextEditingController();
   TextEditingController otp = new TextEditingController();
   EmailOTP myauth = EmailOTP();
 
@@ -37,15 +39,16 @@ class _SendingMail extends State<SendingMail> {
                 Card(
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                            controller: email,
-                            decoration:
-                            const InputDecoration(hintText: "User Email")),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(8.0),
+                      //   child: TextFormField(
+                      //       controller: email,
+                      //       decoration:
+                      //       const InputDecoration(hintText: "User Email")),
+                      // ),
                       ElevatedButton(
                           onPressed: () async {
+                            print(widget.email);
                             myauth.setTheme(
                                 theme:"v3"
                             );
@@ -53,8 +56,8 @@ class _SendingMail extends State<SendingMail> {
                             myauth.setConfig(
                                 appEmail: "aryasingh8405@gmail.com",
                                 appName: "For Your Verification",
-                                userEmail: email.text,
-                                otpLength: 4,
+                                userEmail: widget.email,
+                                otpLength: 10,
                                 otpType: OTPType.digitsOnly
                             );
                             if (await myauth.sendOTP() == true) {
@@ -62,6 +65,7 @@ class _SendingMail extends State<SendingMail> {
                                   .showSnackBar(const SnackBar(
                                 content: Text("OTP has been sent"),
                               ));
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const MyHomePage()));
                             } else {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
