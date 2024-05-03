@@ -100,7 +100,7 @@ class _SendingMail extends State<SendingMail> {
                             keyboardType: TextInputType.number,
                             controller: otp,
                             decoration:
-                            InputDecoration(hintText: "                                        Enter OTP",suffix:Text("hello",style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize:30,fontStyle:FontStyle.normal)))),
+                            InputDecoration(hintText: "                                        Enter OTP",suffixIcon: Icon(Icons.numbers_sharp))),
                       ),
                       ElevatedButton(
                           onPressed: () async {

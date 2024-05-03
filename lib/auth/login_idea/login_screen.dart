@@ -151,12 +151,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
                           controller: emailController,
                           style: textFieldTextStyle(),
-                          decoration: textFieldDecoration('Email'),
+                          decoration: InputDecoration(hintText: 'Email',prefixIcon: Icon(Icons.email_outlined)),
                         ),
                         const SizedBox(
                           height: 10,
                         ),
                         TextFormField(
+
                           obscureText: true,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -171,7 +172,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           controller: _passController,
                           style: textFieldTextStyle(),
-                          decoration: textFieldDecoration('Password'),
+                          decoration: InputDecoration(hintText: 'Password',prefixIcon: Icon(Icons.password_outlined)),
+
                         ),
                         const SizedBox(
                           height: 25,
