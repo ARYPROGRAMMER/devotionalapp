@@ -13,3 +13,5 @@
 ![check](ScreenShots/otp1.jpg)
 ![check](ScreenShots/otp2.jpg)
 ![check](ScreenShots/otp3.jpg)
+![check](ScreenShots/home_loading.png)
+![check](ScreenShots/home_login_idea.png)
