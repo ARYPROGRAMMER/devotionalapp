@@ -65,7 +65,7 @@ class _SendingMail extends State<SendingMail> {
                                   .showSnackBar(const SnackBar(
                                 content: Text("OTP has been sent"),
                               ));
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const MyHomePage()));
+
                             } else {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
@@ -94,6 +94,7 @@ class _SendingMail extends State<SendingMail> {
                                   .showSnackBar(const SnackBar(
                                 content: Text("OTP is verified"),
                               ));
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MyHomePage()));
                             } else {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
