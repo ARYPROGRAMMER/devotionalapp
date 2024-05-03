@@ -83,6 +83,7 @@ class _SendingMail extends State<SendingMail> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          keyboardType: TextInputType.number,
                             controller: otp,
                             decoration:
                             const InputDecoration(hintText: "Enter OTP")),
