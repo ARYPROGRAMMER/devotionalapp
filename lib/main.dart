@@ -1,6 +1,5 @@
-import 'package:dream/auth/verify.dart';
+
 import 'package:dream/utils/parallaxing.dart';
-import 'package:dream/utils/send_mail.dart';
 import 'package:dream/utils/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
