@@ -7,8 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
 class SendingMail extends StatefulWidget {
-  SendingMail({Key? key,required this.email} ) : super(key: key);
-  String ?email;
+  SendingMail({Key? key, required this.email}) : super(key: key);
+  String? email;
 
   @override
   State<SendingMail> createState() => _SendingMail();
@@ -17,12 +17,12 @@ class SendingMail extends StatefulWidget {
 class _SendingMail extends State<SendingMail> {
   // TextEditingController email = new TextEditingController();
   // TextEditingController otp = new TextEditingController();
-  String otp="";
+  String otp = "";
   EmailOTP myauth = EmailOTP();
 
   bool _visible = false;
-  VideoPlayerController? _controller = VideoPlayerController.asset(
-      "assets/fire.mp4");
+  VideoPlayerController? _controller =
+      VideoPlayerController.asset("assets/fire.mp4");
 
   @override
   void initState() {
@@ -59,9 +59,10 @@ class _SendingMail extends State<SendingMail> {
       child: VideoPlayer(_controller!),
     );
   }
+
   _getBackgroundColor() {
     return Container(color: Colors.transparent //.withAlpha(120),
-    );
+        );
   }
 
   _getContent() {
@@ -71,37 +72,32 @@ class _SendingMail extends State<SendingMail> {
     );
   }
 
-
-
-
-
-
-
-
-  bool k=false;
+  bool k = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children:[
-          _getVideoBackground(),
+      body: Stack(children: [
+        _getVideoBackground(),
 
+        // Positioned(
+        //     left: 70,
+        //     top: 200,
+        //     child:
+        //     T
+        //
+        // ),
 
-          // Positioned(
-          //     left: 70,
-          //     top: 200,
-          //     child:
-          //     T
-          //
-          // ),
-
-          Container(
+        Container(
           child: Padding(
             padding: const EdgeInsets.all(15),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Verification Code",style: Theme.of(context).textTheme.titleMedium!.copyWith(fontStyle:FontStyle.normal,fontSize: 50,color: Colors.white)),
+                Text("Verification Code",
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        fontStyle: FontStyle.normal,
+                        fontSize: 50,
+                        color: Colors.white)),
                 Card(
                   child: Column(
                     children: [
@@ -115,24 +111,19 @@ class _SendingMail extends State<SendingMail> {
 
                       ElevatedButton(
                           onPressed: () async {
-
-                            myauth.setTheme(
-                                theme:"v3"
-                            );
+                            myauth.setTheme(theme: "v3");
 
                             myauth.setConfig(
                                 appEmail: "aryasingh8405@gmail.com",
                                 appName: "For Your Verification",
                                 userEmail: widget.email,
                                 otpLength: 6,
-                                otpType: OTPType.digitsOnly
-                            );
+                                otpType: OTPType.digitsOnly);
                             if (await myauth.sendOTP() == true) {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
                                 content: Text("OTP has been sent"),
                               ));
-
                             } else {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
@@ -140,17 +131,20 @@ class _SendingMail extends State<SendingMail> {
                               ));
                             }
                           },
-                          child: const Text("Send OTP",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),)),
+                          child: const Text(
+                            "Send OTP",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
+                          )),
                     ],
                   ),
                 ),
-
                 Card(
                   child: Column(
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child:  OtpTextField(
+                        child: OtpTextField(
                           fieldWidth: 40,
                           fieldHeight: 50,
                           numberOfFields: 6,
@@ -164,15 +158,14 @@ class _SendingMail extends State<SendingMail> {
                           borderWidth: 2.0,
                           //runs when a code is typed in
                           onCodeChanged: (String code) {
-
                             //handle validation or checks here if necessary
                           },
                           keyboardType: TextInputType.number,
                           //runs when every textfield is filled
                           onSubmit: (String verificationCode) {
-                            otp=verificationCode;
+                            otp = verificationCode;
                             setState(() {
-                              k=true;
+                              k = true;
                             });
                           },
                         ),
@@ -189,7 +182,10 @@ class _SendingMail extends State<SendingMail> {
                                   .showSnackBar(const SnackBar(
                                 content: Text("OTP is verified"),
                               ));
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MyHomePage()));
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MyHomePage()));
                             } else {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
@@ -197,7 +193,14 @@ class _SendingMail extends State<SendingMail> {
                               ));
                             }
                           },
-                          child:  Text("V e r i f y", style:Theme.of(context).textTheme.titleMedium!.copyWith(fontStyle:FontStyle.normal,fontSize: 20,fontWeight: FontWeight.bold))),
+                          child: Text("V e r i f y",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                      fontStyle: FontStyle.normal,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold))),
                     ],
                   ),
                 ),
@@ -205,13 +208,11 @@ class _SendingMail extends State<SendingMail> {
                   width: 10,
                   height: 10,
                 ),
-
-
               ],
             ),
           ),
-        ),]
-      ),
+        ),
+      ]),
     );
   }
 }

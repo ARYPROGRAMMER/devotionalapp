@@ -7,7 +7,6 @@ import 'package:page_transition/page_transition.dart';
 import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -19,7 +18,8 @@ class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   final double _buttonWidth = 100;
   bool _visible = false;
-  VideoPlayerController? _controller= VideoPlayerController.asset("assets/check.mp4");
+  VideoPlayerController? _controller =
+      VideoPlayerController.asset("assets/check.mp4");
 
   late AnimationController _buttonScaleController;
   late Animation<double> _buttonScaleAnimation;
@@ -29,14 +29,12 @@ class _SplashScreenState extends State<SplashScreen>
       duration: const Duration(milliseconds: 200),
     );
     _buttonScaleAnimation =
-    Tween<double>(begin: 1, end: .9).animate(_buttonScaleController)
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          _buttonWidthController.forward();
-        }
-      });
-
-
+        Tween<double>(begin: 1, end: .9).animate(_buttonScaleController)
+          ..addStatusListener((status) {
+            if (status == AnimationStatus.completed) {
+              _buttonWidthController.forward();
+            }
+          });
   }
 
   late AnimationController _buttonWidthController;
@@ -74,24 +72,21 @@ class _SplashScreenState extends State<SplashScreen>
     _screenScaleController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 400));
     _screenScaleAnimation =
-    Tween<double>(begin: 1, end: 24).animate(_screenScaleController)
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const LoginScreen()),
+        Tween<double>(begin: 1, end: 24).animate(_screenScaleController)
+          ..addStatusListener((status) {
+            if (status == AnimationStatus.completed) {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
                   (e) => false);
 
-          Navigator.pushReplacement(
-              context,
-              PageTransition(
-                  child: const LoginScreen(),
-                  type: PageTransitionType.fade));
-
-        }
-        
-      });
+              Navigator.pushReplacement(
+                  context,
+                  PageTransition(
+                      child: const LoginScreen(),
+                      type: PageTransitionType.fade));
+            }
+          });
   }
 
   @override
@@ -103,7 +98,7 @@ class _SplashScreenState extends State<SplashScreen>
       DeviceOrientation.portraitUp,
     ]);
 
-    if (_controller!=null) {
+    if (_controller != null) {
       _controller!.initialize().then((_) {
         _controller!.setLooping(true);
         Timer(const Duration(milliseconds: 10), () {
@@ -128,17 +123,18 @@ class _SplashScreenState extends State<SplashScreen>
       _controller = null;
     }
   }
-  _getVideoBackground() {
 
+  _getVideoBackground() {
     return AnimatedOpacity(
       opacity: _visible ? 1.0 : 0.0,
       duration: const Duration(milliseconds: 1000),
       child: VideoPlayer(_controller!),
     );
   }
+
   _getBackgroundColor() {
     return Container(color: Colors.transparent //.withAlpha(120),
-    );
+        );
   }
 
   _getContent() {
@@ -153,44 +149,46 @@ class _SplashScreenState extends State<SplashScreen>
     final double screenWidth = MediaQuery.of(context).size.width;
     _initButtonWidth(screenWidth);
     _initPositioned(screenWidth);
-    int t=1;
+    int t = 1;
 
     return CupertinoPageScaffold(
       backgroundColor: CupertinoColors.secondarySystemFill,
-
-
       child: Stack(
         children: [
           _getVideoBackground(),
           Positioned(
-              left: MediaQuery.of(context).size.width/2-156,
-              top: MediaQuery.of(context).size.height/2-350,
-              child: Text("Experience Devotion",style: Theme.of(context).textTheme.displayMedium!.copyWith(fontStyle:FontStyle.normal,fontSize: 35,color: Colors.white))
-          ),
+              left: MediaQuery.of(context).size.width / 2 - 156,
+              top: MediaQuery.of(context).size.height / 2 - 350,
+              child: Text("Experience Devotion",
+                  style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                      fontStyle: FontStyle.normal,
+                      fontSize: 35,
+                      color: Colors.white))),
           Positioned(
-              left: MediaQuery.of(context).size.width/2-28,
-              top: MediaQuery.of(context).size.height/2-295,
-              child: Text("and",style: Theme.of(context).textTheme.displaySmall!.copyWith(fontStyle:FontStyle.normal,fontWeight:FontWeight.bold,fontSize: 30,color: Colors.yellowAccent))
-
-          ),
-
+              left: MediaQuery.of(context).size.width / 2 - 28,
+              top: MediaQuery.of(context).size.height / 2 - 295,
+              child: Text("and",
+                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                      color: Colors.yellowAccent))),
           Positioned(
-              left: MediaQuery.of(context).size.width/2-94,
-              top: MediaQuery.of(context).size.height/2-250,
-              child: Text("PURENESS",style: Theme.of(context).textTheme.displayLarge!.copyWith(fontStyle:FontStyle.normal,fontWeight:FontWeight.bold,fontSize: 35,color: Colors.red))
-
-          ),
-
+              left: MediaQuery.of(context).size.width / 2 - 94,
+              top: MediaQuery.of(context).size.height / 2 - 250,
+              child: Text("PURENESS",
+                  style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 35,
+                      color: Colors.red))),
           Container(
-
-            padding: const EdgeInsets.only(bottom: 15,left: 20,right: 20,top: 25),
+            padding:
+                const EdgeInsets.only(bottom: 15, left: 20, right: 20, top: 25),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-
-
-
                 AnimatedBuilder(
                   animation: _buttonScaleController,
                   builder: (_, child) => Transform.scale(
@@ -201,8 +199,6 @@ class _SplashScreenState extends State<SplashScreen>
                       },
                       child: Stack(
                         children: [
-
-
                           AnimatedBuilder(
                             animation: _buttonWidthController,
                             builder: (_, child) => Container(
@@ -226,19 +222,18 @@ class _SplashScreenState extends State<SplashScreen>
                                   child: Container(
                                     height: _buttonWidth - 17,
                                     width: _buttonWidth - 17,
-                                    decoration:  BoxDecoration(
-                                      color: Colors.blue.withOpacity(1)
-                                        
-                                     ,
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue.withOpacity(1),
                                       shape: BoxShape.circle,
                                     ),
                                     alignment: Alignment.center,
                                     child: _screenScaleController.isDismissed
-                                        ?  Icon(
-                                      CupertinoIcons.chevron_forward,
-                                      color: Colors.black.withOpacity(0.4*t),
-                                      size: 35,
-                                    )
+                                        ? Icon(
+                                            CupertinoIcons.chevron_forward,
+                                            color: Colors.black
+                                                .withOpacity(0.4 * t),
+                                            size: 35,
+                                          )
                                         : null,
                                   ),
                                 ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../app_colors.dart';
 
-
 InputDecoration textFieldDecoration(String labelText) {
   return InputDecoration(
     labelText: labelText,

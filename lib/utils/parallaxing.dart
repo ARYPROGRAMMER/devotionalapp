@@ -3,10 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 
-
 class ParallaxSwiper extends StatefulWidget {
-
-
   const ParallaxSwiper({
     super.key,
     required this.images,
@@ -17,7 +14,6 @@ class ParallaxSwiper extends StatefulWidget {
     this.foregroundFadeEnabled = true,
     this.backgroundZoomEnabled = true,
   });
-
 
   final List<String> images;
   final bool dragToScroll;
@@ -63,13 +59,13 @@ class _ParallaxSwiperState extends State<ParallaxSwiper> {
   Widget build(BuildContext context) {
     return ScrollConfiguration(
       behavior:
-      widget.dragToScroll ? DragScrollBehavior() : const ScrollBehavior(),
+          widget.dragToScroll ? DragScrollBehavior() : const ScrollBehavior(),
       child: PageView.builder(
         controller: controller,
         itemCount: widget.images.length,
         itemBuilder: (context, index) {
           double value =
-          controller.position.haveDimensions ? pageIndex - index : 0;
+              controller.position.haveDimensions ? pageIndex - index : 0;
 
           return _SwiperItem(
             image: widget.images[index],
@@ -78,23 +74,22 @@ class _ParallaxSwiperState extends State<ParallaxSwiper> {
             parallaxFactor: widget.parallaxFactor,
             foregroundFadeEnabled: widget.foregroundFadeEnabled,
             backgroundZoomEnabled: widget.backgroundZoomEnabled,
-
-            child: Stack(
-              children: [Positioned(
+            child: Stack(children: [
+              Positioned(
                 left: 10,
                 top: 420,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'WIDGET ${index+1}',
+                    'WIDGET ${index + 1}',
                     style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                      color: Colors.yellowAccent,
-                      fontSize: 30,
-                    ),
+                          color: Colors.yellowAccent,
+                          fontSize: 30,
+                        ),
                   ),
                 ),
-              ),]
-            ),
+              ),
+            ]),
           );
         },
       ),
@@ -102,10 +97,7 @@ class _ParallaxSwiperState extends State<ParallaxSwiper> {
   }
 }
 
-
 class _SwiperItem extends StatelessWidget {
-
-
   const _SwiperItem({
     required this.image,
     required this.parallaxFactor,
@@ -115,7 +107,6 @@ class _SwiperItem extends StatelessWidget {
     this.foregroundFadeEnabled = true,
     this.backgroundZoomEnabled = true,
   });
-
 
   final String image;
   final double parallaxFactor;
@@ -131,10 +122,10 @@ class _SwiperItem extends StatelessWidget {
     final tween = Tween<double>(begin: 0.0, end: 1.0).transform(value);
     final foregroundOffset = Offset(-(tween * pow(parallaxFactor, 2.2)), 0);
     final foregroundOpacity =
-    foregroundFadeEnabled ? 1 - tween.clamp(0.0, 1.0) : 1.0;
+        foregroundFadeEnabled ? 1 - tween.clamp(0.0, 1.0) : 1.0;
     final backgroundOffset = Offset(tween * pow(parallaxFactor, 2), 0);
     final scale =
-    backgroundZoomEnabled ? 1.0 + (value.abs() * 0.15) * 1.1 : 1.0;
+        backgroundZoomEnabled ? 1.0 + (value.abs() * 0.15) * 1.1 : 1.0;
 
     return Container(
       padding: padding,
