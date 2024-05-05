@@ -4,7 +4,7 @@ import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/services.dart';
-
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
 class SendingMail extends StatefulWidget {
   SendingMail({Key? key,required this.email} ) : super(key: key);
@@ -16,7 +16,8 @@ class SendingMail extends StatefulWidget {
 
 class _SendingMail extends State<SendingMail> {
   // TextEditingController email = new TextEditingController();
-  TextEditingController otp = new TextEditingController();
+  // TextEditingController otp = new TextEditingController();
+  String otp="";
   EmailOTP myauth = EmailOTP();
 
   bool _visible = false;
@@ -69,6 +70,15 @@ class _SendingMail extends State<SendingMail> {
       mainAxisAlignment: MainAxisAlignment.start,
     );
   }
+
+
+
+
+
+
+
+
+  bool k=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,13 +87,13 @@ class _SendingMail extends State<SendingMail> {
           _getVideoBackground(),
 
 
-          Positioned(
-              left: 70,
-              top: 200,
-              child:
-              Text("Verification Code",style: Theme.of(context).textTheme.titleMedium!.copyWith(fontStyle:FontStyle.normal,fontSize: 50,color: Colors.white))
-
-          ),
+          // Positioned(
+          //     left: 70,
+          //     top: 200,
+          //     child:
+          //     T
+          //
+          // ),
 
           Container(
           child: Padding(
@@ -91,20 +101,90 @@ class _SendingMail extends State<SendingMail> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Text("Verification Code",style: Theme.of(context).textTheme.titleMedium!.copyWith(fontStyle:FontStyle.normal,fontSize: 50,color: Colors.white)),
+                Card(
+                  child: Column(
+                    children: [
+                      // Padding(
+                      //   padding: const EdgeInsets.all(8.0),
+                      //   child: TextFormField(
+                      //       controller: email,
+                      //       decoration:
+                      //       const InputDecoration(hintText: "User Email")),
+                      // ),
+
+                      ElevatedButton(
+                          onPressed: () async {
+
+                            myauth.setTheme(
+                                theme:"v3"
+                            );
+
+                            myauth.setConfig(
+                                appEmail: "aryasingh8405@gmail.com",
+                                appName: "For Your Verification",
+                                userEmail: widget.email,
+                                otpLength: 6,
+                                otpType: OTPType.digitsOnly
+                            );
+                            if (await myauth.sendOTP() == true) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("OTP has been sent"),
+                              ));
+
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("Oops, OTP send failed"),
+                              ));
+                            }
+                          },
+                          child: const Text("Send OTP",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),)),
+                    ],
+                  ),
+                ),
+
                 Card(
                   child: Column(
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                            keyboardType: TextInputType.number,
-                            controller: otp,
-                            decoration:
-                            InputDecoration(hintText: "                                        Enter OTP",suffixIcon: Icon(Icons.numbers_sharp))),
+                        child:  OtpTextField(
+                          fieldWidth: 40,
+                          fieldHeight: 50,
+                          numberOfFields: 6,
+                          borderColor: Colors.pinkAccent,
+                          enabledBorderColor: Colors.black,
+                          fillColor: Colors.green,
+                          filled: k,
+                          focusedBorderColor: Colors.red,
+                          // styles: otpTextStyles,
+                          showFieldAsBox: false,
+                          borderWidth: 2.0,
+                          //runs when a code is typed in
+                          onCodeChanged: (String code) {
+
+                            //handle validation or checks here if necessary
+                          },
+                          keyboardType: TextInputType.number,
+                          //runs when every textfield is filled
+                          onSubmit: (String verificationCode) {
+                            otp=verificationCode;
+                            setState(() {
+                              k=true;
+                            });
+                          },
+                        ),
+                        // child: TextFormField(
+                        //     keyboardType: TextInputType.number,
+                        //     controller: otp,
+                        //     decoration:
+                        //     InputDecoration(hintText: "                                        Enter OTP",suffixIcon: Icon(Icons.numbers_sharp))),
                       ),
                       ElevatedButton(
                           onPressed: () async {
-                            if (await myauth.verifyOTP(otp: otp.text) == true) {
+                            if (await myauth.verifyOTP(otp: otp) == true) {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
                                 content: Text("OTP is verified"),
@@ -125,47 +205,7 @@ class _SendingMail extends State<SendingMail> {
                   width: 10,
                   height: 10,
                 ),
-                Card(
-                  child: Column(
-                    children: [
-                      // Padding(
-                      //   padding: const EdgeInsets.all(8.0),
-                      //   child: TextFormField(
-                      //       controller: email,
-                      //       decoration:
-                      //       const InputDecoration(hintText: "User Email")),
-                      // ),
-                      ElevatedButton(
-                          onPressed: () async {
 
-                            myauth.setTheme(
-                                theme:"v3"
-                            );
-
-                            myauth.setConfig(
-                                appEmail: "aryasingh8405@gmail.com",
-                                appName: "For Your Verification",
-                                userEmail: widget.email,
-                                otpLength: 10,
-                                otpType: OTPType.digitsOnly
-                            );
-                            if (await myauth.sendOTP() == true) {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                                content: Text("OTP has been sent"),
-                              ));
-
-                            } else {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                                content: Text("Oops, OTP send failed"),
-                              ));
-                            }
-                          },
-                          child: const Text("Send OTP",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),)),
-                    ],
-                  ),
-                ),
 
               ],
             ),
