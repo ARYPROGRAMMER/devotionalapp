@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:dream/utils/send_mail.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import '../../utils/app_colors.dart';
 import '../../utils/styles/text_field_style.dart';
 import '../../utils/utils.dart';
 import 'package:video_player/video_player.dart';
-
+import 'package:email_validator/email_validator.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -25,10 +26,18 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  String? emailval = "";
+  // String? emailval = "";
 
-  bool _validate = false;
-  bool _second = false;
+  final _formKey = GlobalKey<FormState>();
+  // declare a variable to keep track of the input text
+  String _emailval = '';
+  String _passval="";
+  bool check1=false;
+  bool check2=false;
+
+
+  // bool _validate = false;
+  // bool _second = false;
 
   @override
   void initState() {
@@ -133,16 +142,66 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 20,
                       ),
-                      TextField(
+                      TextFormField(
                         // validator: (value) {
                         //   if (value == null || value.isEmpty) {
                         //     return "Enter your e-mail.";
                         //   }
                         //   return null;
                         // },
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (text) {
+                          if (text == null || text.isEmpty) {
+                            return 'Can\'t be empty';
+                          }
+                          if (text.length < 7) {
+                            return 'Too short';
+                          }
 
-                        controller: emailController,
-                        style: textFieldTextStyle(),
+                          if (text.contains("@")==false)
+                            return 'Missing @';
+
+                          return null;
+                        },
+                        // update the state variable when the text changes
+                        onChanged: (text) {
+                          setState(() {
+                            _emailval=text;
+
+                          });
+
+                          ;},
+
+                        onTapOutside: (value)
+                        {
+                          if (_emailval.contains("@")&&_emailval.length>7&&_emailval!=null&&!_emailval.isEmpty&&EmailValidator.validate(_emailval))
+                            check1=true;
+                          // else
+                          //   _dialogBuilder(context);
+
+                        },
+                        onSaved: (value)
+                        {
+                          if (_emailval.contains("@")&&_emailval.length>7&&_emailval!=null&&!_emailval.isEmpty&&EmailValidator.validate(_emailval))
+                            check1=true;
+                          // else
+                          //   _dialogBuilder(context);
+
+                        },
+                        onFieldSubmitted: (value)
+                        {
+                          if (_emailval.contains("@")&&_emailval.length>7&&_emailval!=null&&(!_emailval.isEmpty)&&EmailValidator.validate(_emailval))
+                            check1=true;
+                          // else
+                          //   _dialogBuilder(context);
+
+                        },
+
+
+
+                        // controller: emailController,
+                        // style: textFieldTextStyle(),
+                        style: Theme.of(context).textTheme.displayLarge!.copyWith(letterSpacing:1,fontStyle: FontStyle.normal,fontSize: 17,color: Colors.white),
                         decoration: InputDecoration(
                           hintText: 'Email',
                           hintStyle: Theme.of(context)
@@ -153,13 +212,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           labelText: "Enter your Email Id",
                           labelStyle:
                               TextStyle(fontSize: 15, color: Colors.red),
-                          errorText: _validate ? "Value Can't Be Empty" : null,
+
                         ),
                       ),
                       const SizedBox(
                         height: 15,
                       ),
-                      TextField(
+                      TextFormField(
                         obscureText: true,
                         obscuringCharacter: "*",
                         // validator: (value) {
@@ -170,11 +229,57 @@ class _LoginScreenState extends State<LoginScreen> {
                         // }
                         // return null;
                         // },
-                        focusNode: FocusNode(
-                          canRequestFocus: true,
-                        ),
-                        controller: _passController,
-                        style: textFieldTextStyle(),
+                        // focusNode: FocusNode(
+                        //   canRequestFocus: true,
+                        // ),
+                        // controller: _passController,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (text) {
+                          if (text == null || text.isEmpty) {
+                            return 'Can\'t be empty';
+                          }
+                          if (text.length < 6) {
+                            return 'Too short';
+                          }
+                          return null;
+                        },
+                        // update the state variable when the text changes
+                        onChanged: (text) {
+
+                          setState(() {
+                            _passval=text;
+
+                          });
+                        },
+
+                        onTapOutside: (value)
+                        {
+                          if (_passval!=null && !_passval.isEmpty && _passval.length>6)
+                            check2=true;
+                          // else
+                          //   _dialogBuilder(context);
+
+                        },
+                        onSaved: (value)
+                        {
+                          if (_passval!=null && !_passval.isEmpty && _passval.length>6)
+                            check2=true;
+                          // else
+                          //   _dialogBuilder(context);
+
+                        },
+                        onFieldSubmitted: (value)
+                        {
+                          if (_passval!=null && !_passval.isEmpty && _passval.length>6)
+                            check2=true;
+                          // else
+                          //   _dialogBuilder(context);
+
+                        },
+
+
+                        // style: textFieldTextStyle(),
+                        style: Theme.of(context).textTheme.displayLarge!.copyWith(letterSpacing:1,fontStyle: FontStyle.normal,fontSize: 17,color: Colors.white),
                         decoration: InputDecoration(
                           hintText: 'Password',
                           hintStyle: Theme.of(context)
@@ -185,7 +290,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           labelText: "Enter Password",
                           labelStyle:
                               TextStyle(fontSize: 15, color: Colors.red),
-                          errorText: _second ? "Min Size is 4" : null,
+
                         ),
                       ),
                       const SizedBox(
@@ -193,21 +298,35 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       FractionallySizedBox(
                         widthFactor: 1,
-                        child: TextButton(
+                        child: ElevatedButton(
+
+
                             style: TextButton.styleFrom(
                               backgroundColor: Color(0xff098c51),
                               foregroundColor: AppColors.whiteColor,
                             ),
                             onPressed: () async {
-                              setState(() {
-                                emailController.text.isEmpty
-                                    ? _validate = true
-                                    : null;
-                                _passController.text.isEmpty
-                                    ? _validate = true
-                                    : null;
-                              });
-                              emailval = emailController.text.toString();
+
+
+                              if (check1==false && check2==false) {
+
+                                _dialogBuilder(context);
+                                return null;
+
+
+                              }
+
+
+
+
+                                // emailController.text.isEmpty
+                                //     ? _validate = true
+                                //     : null;
+                                // _passController.text.isEmpty
+                                //     ? _validate = true
+                                //     : null;
+
+                              // emailval = emailController.text.toString();
 
                               loadingDialog(context);
                               FocusManager.instance.primaryFocus?.unfocus();
@@ -218,7 +337,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          SendingMail(email: emailval)));
+                                          SendingMail(email: _emailval)));
                             },
                             child: const Text("Sign In")),
                       ),
@@ -246,12 +365,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               //       duration: const Duration(milliseconds: 500),
                               //       curve: Curves.ease);
                               // },
-                              emailval = emailController.text.toString();
+                              // emailval = emailController.text.toString();
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          SendingMail(email: emailval)));
+                                          SendingMail(email: _emailval)));
                             },
                             child: Text(
                               'Sign Up',
@@ -285,4 +404,45 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+}
+
+Future<void> _dialogBuilder(BuildContext context) {
+  return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title:  Text('Invalid Credentials',style: Theme.of(context).textTheme.displayMedium!.copyWith(fontStyle:FontStyle.normal,fontSize:20,color: Colors.red)),
+          content: const  Text(
+            'Either Email or Password is Incorrect\n'
+                'Try Again or Click Forget Password'
+          ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme
+                    .of(context)
+                    .textTheme
+                    .titleMedium!.copyWith(fontStyle:FontStyle.normal,),
+              ),
+              child: const Text('Quit App'),
+              onPressed: () {
+                exit(0);
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme
+                    .of(context)
+                    .textTheme
+                    .titleMedium!.copyWith(fontStyle:FontStyle.normal),
+              ),
+              child: const Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      }
+  );
 }
