@@ -78,6 +78,9 @@ flutter:
      - assets/check.mp4
      - assets/login.jpg
      - assets/fire.mp4
+     - assets/google.png
+     - assets/instagram.png
+     - assets/linkedin.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

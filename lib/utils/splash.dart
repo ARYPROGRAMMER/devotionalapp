@@ -154,7 +154,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     return PopScope(
       canPop: false,
-      onPopInvoked: (value){
+      onPopInvoked: (value) {
         _dialogBuilder(context);
       },
       child: CupertinoPageScaffold(
@@ -189,8 +189,8 @@ class _SplashScreenState extends State<SplashScreen>
                         fontSize: 35,
                         color: Colors.red))),
             Container(
-              padding:
-                  const EdgeInsets.only(bottom: 15, left: 20, right: 20, top: 25),
+              padding: const EdgeInsets.only(
+                  bottom: 15, left: 20, right: 20, top: 25),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -264,7 +264,6 @@ class _SplashScreenState extends State<SplashScreen>
   }
 }
 
-
 Future<void> _dialogBuilder(BuildContext context) {
   return showDialog<void>(
       context: context,
@@ -280,8 +279,8 @@ Future<void> _dialogBuilder(BuildContext context) {
             TextButton(
               style: TextButton.styleFrom(
                 textStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
-                  fontStyle: FontStyle.normal,
-                ),
+                      fontStyle: FontStyle.normal,
+                    ),
               ),
               child: const Text('Quit'),
               onPressed: () {
@@ -304,4 +303,3 @@ Future<void> _dialogBuilder(BuildContext context) {
         );
       });
 }
-

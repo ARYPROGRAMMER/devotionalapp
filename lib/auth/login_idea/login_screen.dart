@@ -4,6 +4,7 @@ import 'package:dream/utils/send_mail.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/styles/text_field_style.dart';
 import '../../utils/utils.dart';
@@ -111,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Positioned(
               // padding: const EdgeInsets.all(30),
-              bottom: 30,
+              bottom: 20,
               left: 30,
               right: 30,
 
@@ -381,20 +382,63 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                       const SizedBox(
-                        height: 15,
+                        height: 5,
                       ),
                       InkWell(
                         onTap: () {
                           _dialogBuilder(context);
                         },
                         child: Text(
-                          'Forget Password?',
+                          'Forgot Password?',
                           style: TextStyle(
                             color: Color(0xff098c51),
                             fontSize: 13,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
+                      ),
+                      const SizedBox(
+                        height: 13,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              _dialogBuilder(context);
+                            },
+                            child: Container(
+                                height: 50,
+                                width: 50,
+                                child: Image.asset("assets/google.png")),
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              _dialogBuilder(context);
+                            },
+                            child: Container(
+                                height: 50,
+                                width: 50,
+                                child: Image.asset("assets/instagram.png")),
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          InkWell(
+                              onTap: () {
+                                _dialogBuilder(context);
+                              },
+                              child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  child: Image.asset("assets/linkedin.png")))
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 5,
                       ),
                     ],
                   ),
