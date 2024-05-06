@@ -141,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 17,
                       ),
                       TextFormField(
                         // validator: (value) {
@@ -208,7 +208,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             .copyWith(
                                 letterSpacing: 1,
                                 fontStyle: FontStyle.normal,
-                                fontSize: 17,
+                                fontSize: 15,
                                 color: Colors.white),
                         decoration: InputDecoration(
                           hintText: 'Email',
@@ -286,7 +286,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             .copyWith(
                                 letterSpacing: 1,
                                 fontStyle: FontStyle.normal,
-                                fontSize: 17,
+                                fontSize: 15,
                                 color: Colors.white),
                         decoration: InputDecoration(
                           hintText: 'Password',

@@ -152,14 +152,16 @@ class _SendingMail extends State<SendingMail> {
                             fieldWidth: 40,
                             fieldHeight: 50,
                             numberOfFields: 6,
+
                             borderColor: Colors.pinkAccent,
                             enabledBorderColor: Colors.black,
-                            fillColor: Colors.green,
+                            fillColor: Colors.greenAccent,
                             filled: k,
                             focusedBorderColor: Colors.red,
                             // styles: otpTextStyles,
-                            showFieldAsBox: false,
-                            borderWidth: 2.0,
+                            showFieldAsBox: true,
+                            borderRadius: BorderRadius.circular(6),
+                            borderWidth: 1.5,
                             //runs when a code is typed in
                             onCodeChanged: (String code) {
                               //handle validation or checks here if necessary
