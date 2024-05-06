@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:dream/auth/login_idea/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -151,108 +152,156 @@ class _SplashScreenState extends State<SplashScreen>
     _initPositioned(screenWidth);
     int t = 1;
 
-    return CupertinoPageScaffold(
-      backgroundColor: CupertinoColors.secondarySystemFill,
-      child: Stack(
-        children: [
-          _getVideoBackground(),
-          Positioned(
-              left: MediaQuery.of(context).size.width / 2 - 156,
-              top: MediaQuery.of(context).size.height / 2 - 350,
-              child: Text("Experience Devotion",
-                  style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                      fontStyle: FontStyle.normal,
-                      fontSize: 35,
-                      color: Colors.white))),
-          Positioned(
-              left: MediaQuery.of(context).size.width / 2 - 28,
-              top: MediaQuery.of(context).size.height / 2 - 295,
-              child: Text("and",
-                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      color: Colors.yellowAccent))),
-          Positioned(
-              left: MediaQuery.of(context).size.width / 2 - 94,
-              top: MediaQuery.of(context).size.height / 2 - 250,
-              child: Text("PURENESS",
-                  style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 35,
-                      color: Colors.red))),
-          Container(
-            padding:
-                const EdgeInsets.only(bottom: 15, left: 20, right: 20, top: 25),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                AnimatedBuilder(
-                  animation: _buttonScaleController,
-                  builder: (_, child) => Transform.scale(
-                    scale: _buttonScaleAnimation.value,
-                    child: CupertinoButton(
-                      onPressed: () {
-                        _buttonScaleController.forward();
-                      },
-                      child: Stack(
-                        children: [
-                          AnimatedBuilder(
-                            animation: _buttonWidthController,
-                            builder: (_, child) => Container(
-                              height: _buttonWidth,
-                              width: _buttonWidthAnimation.value,
-                              decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(1),
-                                borderRadius: BorderRadius.circular(100),
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (value){
+        _dialogBuilder(context);
+      },
+      child: CupertinoPageScaffold(
+        backgroundColor: CupertinoColors.secondarySystemFill,
+        child: Stack(
+          children: [
+            _getVideoBackground(),
+            Positioned(
+                left: MediaQuery.of(context).size.width / 2 - 156,
+                top: MediaQuery.of(context).size.height / 2 - 350,
+                child: Text("Experience Devotion",
+                    style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                        fontStyle: FontStyle.normal,
+                        fontSize: 35,
+                        color: Colors.white))),
+            Positioned(
+                left: MediaQuery.of(context).size.width / 2 - 28,
+                top: MediaQuery.of(context).size.height / 2 - 295,
+                child: Text("and",
+                    style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                        color: Colors.yellowAccent))),
+            Positioned(
+                left: MediaQuery.of(context).size.width / 2 - 94,
+                top: MediaQuery.of(context).size.height / 2 - 250,
+                child: Text("PURENESS",
+                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 35,
+                        color: Colors.red))),
+            Container(
+              padding:
+                  const EdgeInsets.only(bottom: 15, left: 20, right: 20, top: 25),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  AnimatedBuilder(
+                    animation: _buttonScaleController,
+                    builder: (_, child) => Transform.scale(
+                      scale: _buttonScaleAnimation.value,
+                      child: CupertinoButton(
+                        onPressed: () {
+                          _buttonScaleController.forward();
+                        },
+                        child: Stack(
+                          children: [
+                            AnimatedBuilder(
+                              animation: _buttonWidthController,
+                              builder: (_, child) => Container(
+                                height: _buttonWidth,
+                                width: _buttonWidthAnimation.value,
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(1),
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
                               ),
                             ),
-                          ),
-                          AnimatedBuilder(
-                            animation: _positionedController,
-                            builder: (_, child) => Positioned(
-                              top: 10,
-                              left: _positionedAnimation.value,
-                              child: AnimatedBuilder(
-                                animation: _screenScaleController,
-                                builder: (_, child) => Transform.scale(
-                                  scale: _screenScaleAnimation.value,
-                                  child: Container(
-                                    height: _buttonWidth - 17,
-                                    width: _buttonWidth - 17,
-                                    decoration: BoxDecoration(
-                                      color: Colors.blue.withOpacity(1),
-                                      shape: BoxShape.circle,
+                            AnimatedBuilder(
+                              animation: _positionedController,
+                              builder: (_, child) => Positioned(
+                                top: 10,
+                                left: _positionedAnimation.value,
+                                child: AnimatedBuilder(
+                                  animation: _screenScaleController,
+                                  builder: (_, child) => Transform.scale(
+                                    scale: _screenScaleAnimation.value,
+                                    child: Container(
+                                      height: _buttonWidth - 17,
+                                      width: _buttonWidth - 17,
+                                      decoration: BoxDecoration(
+                                        color: Colors.blue.withOpacity(1),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: _screenScaleController.isDismissed
+                                          ? Icon(
+                                              CupertinoIcons.chevron_forward,
+                                              color: Colors.black
+                                                  .withOpacity(0.4 * t),
+                                              size: 35,
+                                            )
+                                          : null,
                                     ),
-                                    alignment: Alignment.center,
-                                    child: _screenScaleController.isDismissed
-                                        ? Icon(
-                                            CupertinoIcons.chevron_forward,
-                                            color: Colors.black
-                                                .withOpacity(0.4 * t),
-                                            size: 35,
-                                          )
-                                        : null,
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).padding.bottom + 17,
-                ),
-              ],
+                  SizedBox(
+                    height: MediaQuery.of(context).padding.bottom + 17,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
+
+
+Future<void> _dialogBuilder(BuildContext context) {
+  return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirm Exit',
+              style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                  fontStyle: FontStyle.normal,
+                  fontSize: 20,
+                  color: Colors.red)),
+          content: const Text('Are you Sure to Quit?'),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
+                  fontStyle: FontStyle.normal,
+                ),
+              ),
+              child: const Text('Quit'),
+              onPressed: () {
+                exit(0);
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context)
+                    .textTheme
+                    .titleMedium!
+                    .copyWith(fontStyle: FontStyle.normal),
+              ),
+              child: const Text('Continue'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      });
+}
+
