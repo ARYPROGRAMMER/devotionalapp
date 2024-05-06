@@ -114,8 +114,8 @@ class _SendingMail extends State<SendingMail> {
 
                         ElevatedButton(
                             onPressed: () async {
-
-                              myauth.setTheme(theme: "v${Random().nextInt(2)+1}");
+                              myauth.setTheme(
+                                  theme: "v${Random().nextInt(2) + 1}");
 
                               myauth.setConfig(
                                   appEmail: "aryasingh8405@gmail.com",

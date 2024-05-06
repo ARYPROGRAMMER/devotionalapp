@@ -9,6 +9,7 @@ import '../../utils/styles/text_field_style.dart';
 import '../../utils/utils.dart';
 import 'package:video_player/video_player.dart';
 import 'package:email_validator/email_validator.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -31,10 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   // declare a variable to keep track of the input text
   String _emailval = '';
-  String _passval="";
-  bool check1=false;
-  bool check2=false;
-
+  String _passval = "";
+  bool check1 = false;
+  bool check2 = false;
 
   // bool _validate = false;
   // bool _second = false;
@@ -158,50 +158,57 @@ class _LoginScreenState extends State<LoginScreen> {
                             return 'Too short';
                           }
 
-                          if (text.contains("@")==false)
-                            return 'Missing @';
+                          if (text.contains("@") == false) return 'Missing @';
 
                           return null;
                         },
                         // update the state variable when the text changes
                         onChanged: (text) {
                           setState(() {
-                            _emailval=text;
-
+                            _emailval = text;
                           });
 
-                          ;},
-
-                        onTapOutside: (value)
-                        {
-                          if (_emailval.contains("@")&&_emailval.length>7&&_emailval!=null&&!_emailval.isEmpty&&EmailValidator.validate(_emailval))
-                            check1=true;
-                          // else
-                          //   _dialogBuilder(context);
-
-                        },
-                        onSaved: (value)
-                        {
-                          if (_emailval.contains("@")&&_emailval.length>7&&_emailval!=null&&!_emailval.isEmpty&&EmailValidator.validate(_emailval))
-                            check1=true;
-                          // else
-                          //   _dialogBuilder(context);
-
-                        },
-                        onFieldSubmitted: (value)
-                        {
-                          if (_emailval.contains("@")&&_emailval.length>7&&_emailval!=null&&(!_emailval.isEmpty)&&EmailValidator.validate(_emailval))
-                            check1=true;
-                          // else
-                          //   _dialogBuilder(context);
-
+                          ;
                         },
 
-
+                        onTapOutside: (value) {
+                          if (_emailval.contains("@") &&
+                              _emailval.length > 7 &&
+                              _emailval != null &&
+                              !_emailval.isEmpty &&
+                              EmailValidator.validate(_emailval)) check1 = true;
+                          // else
+                          //   _dialogBuilder(context);
+                        },
+                        onSaved: (value) {
+                          if (_emailval.contains("@") &&
+                              _emailval.length > 7 &&
+                              _emailval != null &&
+                              !_emailval.isEmpty &&
+                              EmailValidator.validate(_emailval)) check1 = true;
+                          // else
+                          //   _dialogBuilder(context);
+                        },
+                        onFieldSubmitted: (value) {
+                          if (_emailval.contains("@") &&
+                              _emailval.length > 7 &&
+                              _emailval != null &&
+                              (!_emailval.isEmpty) &&
+                              EmailValidator.validate(_emailval)) check1 = true;
+                          // else
+                          //   _dialogBuilder(context);
+                        },
 
                         // controller: emailController,
                         // style: textFieldTextStyle(),
-                        style: Theme.of(context).textTheme.displayLarge!.copyWith(letterSpacing:1,fontStyle: FontStyle.normal,fontSize: 17,color: Colors.white),
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayLarge!
+                            .copyWith(
+                                letterSpacing: 1,
+                                fontStyle: FontStyle.normal,
+                                fontSize: 17,
+                                color: Colors.white),
                         decoration: InputDecoration(
                           hintText: 'Email',
                           hintStyle: Theme.of(context)
@@ -212,7 +219,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           labelText: "Enter your Email Id",
                           labelStyle:
                               TextStyle(fontSize: 15, color: Colors.red),
-
                         ),
                       ),
                       const SizedBox(
@@ -245,41 +251,42 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         // update the state variable when the text changes
                         onChanged: (text) {
-
                           setState(() {
-                            _passval=text;
-
+                            _passval = text;
                           });
                         },
 
-                        onTapOutside: (value)
-                        {
-                          if (_passval!=null && !_passval.isEmpty && _passval.length>6)
-                            check2=true;
+                        onTapOutside: (value) {
+                          if (_passval != null &&
+                              !_passval.isEmpty &&
+                              _passval.length > 6) check2 = true;
                           // else
                           //   _dialogBuilder(context);
-
                         },
-                        onSaved: (value)
-                        {
-                          if (_passval!=null && !_passval.isEmpty && _passval.length>6)
-                            check2=true;
+                        onSaved: (value) {
+                          if (_passval != null &&
+                              !_passval.isEmpty &&
+                              _passval.length > 6) check2 = true;
                           // else
                           //   _dialogBuilder(context);
-
                         },
-                        onFieldSubmitted: (value)
-                        {
-                          if (_passval!=null && !_passval.isEmpty && _passval.length>6)
-                            check2=true;
+                        onFieldSubmitted: (value) {
+                          if (_passval != null &&
+                              !_passval.isEmpty &&
+                              _passval.length > 6) check2 = true;
                           // else
                           //   _dialogBuilder(context);
-
                         },
-
 
                         // style: textFieldTextStyle(),
-                        style: Theme.of(context).textTheme.displayLarge!.copyWith(letterSpacing:1,fontStyle: FontStyle.normal,fontSize: 17,color: Colors.white),
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayLarge!
+                            .copyWith(
+                                letterSpacing: 1,
+                                fontStyle: FontStyle.normal,
+                                fontSize: 17,
+                                color: Colors.white),
                         decoration: InputDecoration(
                           hintText: 'Password',
                           hintStyle: Theme.of(context)
@@ -290,7 +297,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           labelText: "Enter Password",
                           labelStyle:
                               TextStyle(fontSize: 15, color: Colors.red),
-
                         ),
                       ),
                       const SizedBox(
@@ -299,32 +305,22 @@ class _LoginScreenState extends State<LoginScreen> {
                       FractionallySizedBox(
                         widthFactor: 1,
                         child: ElevatedButton(
-
-
                             style: TextButton.styleFrom(
                               backgroundColor: Color(0xff098c51),
                               foregroundColor: AppColors.whiteColor,
                             ),
                             onPressed: () async {
-
-
-                              if (check1==false && check2==false) {
-
+                              if (check1 == false && check2 == false) {
                                 _dialogBuilder(context);
                                 return null;
-
-
                               }
 
-
-
-
-                                // emailController.text.isEmpty
-                                //     ? _validate = true
-                                //     : null;
-                                // _passController.text.isEmpty
-                                //     ? _validate = true
-                                //     : null;
+                              // emailController.text.isEmpty
+                              //     ? _validate = true
+                              //     : null;
+                              // _passController.text.isEmpty
+                              //     ? _validate = true
+                              //     : null;
 
                               // emailval = emailController.text.toString();
 
@@ -361,16 +357,17 @@ class _LoginScreenState extends State<LoginScreen> {
                           InkWell(
                             onTap: () {
                               FocusManager.instance.primaryFocus?.unfocus();
+                              _dialogBuilder(context);
                               //   widget.controller.animateToPage(1,
                               //       duration: const Duration(milliseconds: 500),
                               //       curve: Curves.ease);
                               // },
                               // emailval = emailController.text.toString();
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          SendingMail(email: _emailval)));
+                              // Navigator.pushReplacement(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) =>
+                              //             SendingMail(email: _emailval)));
                             },
                             child: Text(
                               'Sign Up',
@@ -386,12 +383,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 15,
                       ),
-                      Text(
-                        'Forget Password?',
-                        style: TextStyle(
-                          color: Color(0xff098c51),
-                          fontSize: 13,
-                          fontWeight: FontWeight.w500,
+                      InkWell(
+                        onTap: () {
+                          _dialogBuilder(context);
+                        },
+                        child: Text(
+                          'Forget Password?',
+                          style: TextStyle(
+                            color: Color(0xff098c51),
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ],
@@ -411,18 +413,19 @@ Future<void> _dialogBuilder(BuildContext context) {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title:  Text('Invalid Credentials',style: Theme.of(context).textTheme.displayMedium!.copyWith(fontStyle:FontStyle.normal,fontSize:20,color: Colors.red)),
-          content: const  Text(
-            'Either Email or Password is Incorrect\n'
-                'Try Again or Click Forget Password'
-          ),
+          title: Text('Invalid Credentials',
+              style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                  fontStyle: FontStyle.normal,
+                  fontSize: 20,
+                  color: Colors.red)),
+          content: const Text('Either Email or Password is Incorrect\n'
+              'Try Again or Click Forget Password'),
           actions: <Widget>[
             TextButton(
               style: TextButton.styleFrom(
-                textStyle: Theme
-                    .of(context)
-                    .textTheme
-                    .titleMedium!.copyWith(fontStyle:FontStyle.normal,),
+                textStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      fontStyle: FontStyle.normal,
+                    ),
               ),
               child: const Text('Quit App'),
               onPressed: () {
@@ -431,10 +434,10 @@ Future<void> _dialogBuilder(BuildContext context) {
             ),
             TextButton(
               style: TextButton.styleFrom(
-                textStyle: Theme
-                    .of(context)
+                textStyle: Theme.of(context)
                     .textTheme
-                    .titleMedium!.copyWith(fontStyle:FontStyle.normal),
+                    .titleMedium!
+                    .copyWith(fontStyle: FontStyle.normal),
               ),
               child: const Text('Ok'),
               onPressed: () {
@@ -443,6 +446,5 @@ Future<void> _dialogBuilder(BuildContext context) {
             ),
           ],
         );
-      }
-  );
+      });
 }

@@ -84,10 +84,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (didpop)
-      {
+      onPopInvoked: (didpop) {
         _dialogBuilder(context);
-
       },
       child: Scaffold(
         body: Container(
@@ -169,23 +167,23 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-
 Future<void> _dialogBuilder(BuildContext context) {
   return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title:  Text('Confirm Exit',style: Theme.of(context).textTheme.displayMedium!.copyWith(fontStyle:FontStyle.normal,fontSize:20,color: Colors.red)),
-          content: const  Text(
-              'Are you Sure to Quit?'
-          ),
+          title: Text('Confirm Exit',
+              style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                  fontStyle: FontStyle.normal,
+                  fontSize: 20,
+                  color: Colors.red)),
+          content: const Text('Are you Sure to Quit?'),
           actions: <Widget>[
             TextButton(
               style: TextButton.styleFrom(
-                textStyle: Theme
-                    .of(context)
-                    .textTheme
-                    .titleMedium!.copyWith(fontStyle:FontStyle.normal,),
+                textStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      fontStyle: FontStyle.normal,
+                    ),
               ),
               child: const Text('Quit'),
               onPressed: () {
@@ -194,10 +192,10 @@ Future<void> _dialogBuilder(BuildContext context) {
             ),
             TextButton(
               style: TextButton.styleFrom(
-                textStyle: Theme
-                    .of(context)
+                textStyle: Theme.of(context)
                     .textTheme
-                    .titleMedium!.copyWith(fontStyle:FontStyle.normal),
+                    .titleMedium!
+                    .copyWith(fontStyle: FontStyle.normal),
               ),
               child: const Text('Continue'),
               onPressed: () {
@@ -206,6 +204,5 @@ Future<void> _dialogBuilder(BuildContext context) {
             ),
           ],
         );
-      }
-  );
+      });
 }
