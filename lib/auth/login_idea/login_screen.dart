@@ -173,11 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
 
                         onTapOutside: (value) {
-                          if (_emailval.contains("@") &&
-                              _emailval.length > 7 &&
-                              _emailval != null &&
-                              !_emailval.isEmpty &&
-                              EmailValidator.validate(_emailval)) check1 = true;
+
                           // else
                           //   _dialogBuilder(context);
                         },
@@ -191,11 +187,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         //   //   _dialogBuilder(context);
                         // },
                         onFieldSubmitted: (value) {
-                          if (_emailval.contains("@") &&
-                              _emailval.length > 7 &&
-                              _emailval != null &&
-                              (!_emailval.isEmpty) &&
-                              EmailValidator.validate(_emailval)) check1 = true;
+                          // if (_emailval.contains("@") &&
+                          //     _emailval.length > 7 &&
+                          //     _emailval != null &&
+                          //     (!_emailval.isEmpty) &&
+                          //     EmailValidator.validate(_emailval)) check1 = true;
                           // else
                           //   _dialogBuilder(context);
                         },
@@ -258,9 +254,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
 
                         onTapOutside: (value) {
-                          if (_passval != null &&
-                              !_passval.isEmpty &&
-                              _passval.length > 6) check2 = true;
+                          // if (_passval != null &&
+                          //     !_passval.isEmpty &&
+                          //     _passval.length > 6) check2 = true;
                           // else
                           //   _dialogBuilder(context);
                         },
@@ -272,9 +268,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         //   //   _dialogBuilder(context);
                         // },
                         onFieldSubmitted: (value) {
-                          if (_passval != null &&
-                              !_passval.isEmpty &&
-                              _passval.length > 6) check2 = true;
+
                           // else
                           //   _dialogBuilder(context);
                         },
@@ -311,7 +305,17 @@ class _LoginScreenState extends State<LoginScreen> {
                               foregroundColor: AppColors.whiteColor,
                             ),
                             onPressed: () async {
-                              if (check1 == false && check2 == false) {
+                              if (_emailval.contains("@") &&
+                                  _emailval.length > 7 &&
+                                  _emailval != null &&
+                                  !_emailval.isEmpty &&
+                                  EmailValidator.validate(_emailval)) check1 = true;
+
+                              if (_passval != null &&
+                                  !_passval.isEmpty &&
+                                  _passval.length > 6) check2 = true;
+
+                              if (check1 == false || check2 == false) {
                                 _dialogBuilder(context);
                                 return null;
                               }
